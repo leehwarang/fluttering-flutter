@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pmfm/screens/home_screen.dart';
 
 void main() {
   runApp(const App());
@@ -12,44 +13,21 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  int counter = 0;
-
-  void onClicked() {
-    setState(() {
-      counter = counter + 1;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        textTheme: const TextTheme(
-          titleLarge: TextStyle(color: Colors.red),
-        ),
-      ),
-      home: Scaffold(
-        backgroundColor: const Color(0xFFF4EDDB),
-        body: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const MyLargeTitle(),
-              Text(
-                '$counter',
-                style: const TextStyle(fontSize: 30),
-              ),
-              IconButton(
-                iconSize: 40,
-                onPressed: onClicked,
-                icon: const Icon(Icons.add_box_rounded),
-              )
-            ],
+        theme: ThemeData(
+          textTheme: const TextTheme(
+            displayLarge: TextStyle(
+              color: Color(0xFF232B55),
+            ),
           ),
+          colorScheme: ColorScheme.fromSwatch(
+            backgroundColor: const Color(0xFFE7626C),
+          ),
+          cardColor: const Color(0xFFF3EDDB),
         ),
-      ),
-    );
+        home: const HomeScreen());
   }
 }
 
