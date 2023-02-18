@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pmfm/screens/home_screen.dart';
+import 'package:pmfm/screens/pomodoros_screen.dart';
 
 void main() {
   runApp(const App());
@@ -27,7 +27,7 @@ class _AppState extends State<App> {
           ),
           cardColor: const Color(0xFFF3EDDB),
         ),
-        home: const HomeScreen());
+        home: const PhomodorosScreen());
   }
 }
 
