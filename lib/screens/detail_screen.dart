@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pmfm/models/webtoon_detail_model.dart';
 import 'package:pmfm/models/webtoon_episode_model.dart';
 import 'package:pmfm/services/api_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../widgets/episode.dart';
 
@@ -22,12 +23,46 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   late Future<WebtoonDetailModel> webtoon;
   late Future<List<WebtoonEpisodeModel>> episodes;
+  late SharedPreferences prefs;
+  bool isLiked = false;
+
+  Future initPrefs() async {
+    prefs = await SharedPreferences.getInstance();
+    final likedToons = prefs.getStringList("likedToons");
+    if (likedToons != null) {
+      if (likedToons.contains(widget.id) == true) {
+        setState(() {
+          isLiked = true;
+        });
+      }
+    } else {
+      await prefs.setStringList('likedToons', []);
+    }
+  }
 
   @override
   void initState() {
     super.initState();
     webtoon = ApiService.getToonById(widget.id);
     episodes = ApiService.getLatestEpisodesById(widget.id);
+    initPrefs();
+  }
+
+  onHeartTap() async {
+    final likedToons = prefs.getStringList("likedToons");
+
+    if (likedToons != null) {
+      if (isLiked) {
+        likedToons.remove(widget.id);
+      } else {
+        likedToons.add(widget.id);
+      }
+      await prefs.setStringList("likedToons", likedToons);
+
+      setState(() {
+        isLiked = !isLiked;
+      });
+    }
   }
 
   @override
@@ -35,9 +70,15 @@ class _DetailScreenState extends State<DetailScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        // leading: const BackButton(),
+        actions: [
+          IconButton(
+              onPressed: onHeartTap,
+              icon: Icon(
+                isLiked ? Icons.favorite : Icons.favorite_outline,
+              ))
+        ],
         automaticallyImplyLeading: true,
-        elevation: 2,
+        // elevation: 2,
         title: Text(
           widget.title,
           style: const TextStyle(
@@ -46,6 +87,7 @@ class _DetailScreenState extends State<DetailScreen> {
           ),
         ),
         backgroundColor: Colors.white,
+        foregroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
         child: Padding(
