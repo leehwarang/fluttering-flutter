@@ -1,36 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:pmfm/screens/calendar_screen.dart';
+import 'package:pmfm/screens/home_screen.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: const [
-            Text("어제 세워둔 계획이 없어요"),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class BottomNavigatorBar extends StatefulWidget {
-  const BottomNavigatorBar({
-    super.key,
-  });
+class MainNavigator extends StatefulWidget {
+  const MainNavigator({super.key});
 
   @override
-  State<BottomNavigatorBar> createState() => _BottomNavigatorBarState();
+  State<MainNavigator> createState() => _MainNavigatorState();
 }
 
-class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
+class _MainNavigatorState extends State<MainNavigator> {
   int _selectedTabIndex = 0;
+  final PageController _pageController = PageController();
 
-  void changeTap(int idx) {
+  final List<Widget> _screens = [const HomeScreen(), const CalendarScreen()];
+
+  void onItemTapped(int idx) {
+    setState(() {
+      _pageController.jumpToPage(idx);
+    });
+  }
+
+  void onPageChange(int idx) {
     setState(() {
       _selectedTabIndex = idx;
     });
@@ -38,12 +29,14 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      bottomNavigationBar: Theme(
         data: ThemeData(canvasColor: Colors.white),
         child: BottomNavigationBar(
           showUnselectedLabels: true,
           currentIndex: _selectedTabIndex,
-          onTap: (value) => changeTap(value),
+          onTap: onItemTapped,
           selectedItemColor: Colors.lime,
           unselectedItemColor: Colors.brown.shade400,
           items: const [
@@ -72,6 +65,20 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
                 ),
                 label: "설정")
           ],
-        ));
+        ),
+      ),
+      floatingActionButton: const FloatingActionButton(
+        onPressed: null,
+        backgroundColor: Colors.lime,
+        child: Icon(
+          Icons.add,
+        ),
+      ),
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: onPageChange,
+        children: _screens,
+      ),
+    );
   }
 }

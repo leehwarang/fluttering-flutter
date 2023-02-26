@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pmfm/screens/home_screen.dart';
+import 'package:pmfm/navigator/main_navigator.dart';
 
 void main() {
   runApp(const App());
@@ -10,6 +10,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: HomeScreen());
+    return const MaterialApp(home: MainNavigator());
   }
 }
