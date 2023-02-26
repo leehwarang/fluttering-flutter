@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pmfm/screens/home_screem.dart';
+import 'package:pmfm/screens/plan_screen.dart';
 
 void main() {
   runApp(const App());
@@ -10,6 +10,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: HomeScreen());
+    return const MaterialApp(home: PlanScreen());
   }
 }
