@@ -43,8 +43,13 @@ class _MainNavigatorState extends State<MainNavigator> {
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: Theme(
-        data: ThemeData(canvasColor: Colors.white),
+        data: ThemeData(
+          canvasColor: Colors.white,
+          highlightColor: Colors.transparent,
+          splashFactory: NoSplash.splashFactory,
+        ),
         child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           showUnselectedLabels: true,
           currentIndex: _selectedTabIndex,
           onTap: onItemTapped,
