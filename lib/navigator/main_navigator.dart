@@ -11,6 +11,7 @@ class MainNavigator extends StatefulWidget {
 
 class _MainNavigatorState extends State<MainNavigator> {
   int _selectedTabIndex = 0;
+  String _leapType = 'today';
   final PageController _pageController = PageController();
 
   final List<Widget> _screens = [const HomeScreen(), const CalendarScreen()];
@@ -27,6 +28,16 @@ class _MainNavigatorState extends State<MainNavigator> {
     });
   }
 
+  void onLeapTypeChange() {
+    setState(() {
+      if (_leapType == "today") {
+        _leapType = "tomorrow";
+      } else {
+        _leapType = "today";
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,26 +50,31 @@ class _MainNavigatorState extends State<MainNavigator> {
           onTap: onItemTapped,
           selectedItemColor: Colors.lime,
           unselectedItemColor: Colors.brown.shade400,
-          items: const [
+          enableFeedback: true,
+          items: [
             BottomNavigationBarItem(
-                icon: Icon(
+              icon: GestureDetector(
+                onLongPress: onLeapTypeChange,
+                child: const Icon(
                   Icons.eco_rounded,
                   size: 28,
                 ),
-                label: "오늘의 잎"),
-            BottomNavigationBarItem(
+              ),
+              label: _leapType == "today" ? "오늘의 잎" : "내일의 잎",
+            ),
+            const BottomNavigationBarItem(
                 icon: Icon(
                   Icons.park_rounded,
                   size: 28,
                 ),
-                label: "2월의 숲"),
-            BottomNavigationBarItem(
+                label: "숲"),
+            const BottomNavigationBarItem(
                 icon: Icon(
                   Icons.water_drop,
                   size: 28,
                 ),
                 label: "같이 자라기"),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
                 icon: Icon(
                   Icons.settings,
                   size: 28,
