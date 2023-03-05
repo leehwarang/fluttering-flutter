@@ -22,6 +22,23 @@ class MainNavigator extends StatelessWidget {
 
     int currentIndex = _bottomNavigationBarProvider.selectedTabIndex;
 
+    // leafType에 따라서 다른 모달창 열기
+    void openAddBottomSheet() {
+      showModalBottomSheet<void>(
+          context: context,
+          builder: (BuildContext context) {
+            return Container(
+              height: 200,
+              color: Colors.white,
+              child: Center(
+                child: Column(children: const [
+                  Text("Modal BotttomSheet"),
+                ]),
+              ),
+            );
+          });
+    }
+
     return Scaffold(
         backgroundColor: Colors.white,
         bottomNavigationBar: Theme(
@@ -78,10 +95,10 @@ class MainNavigator extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton: const FloatingActionButton(
-          onPressed: null,
+        floatingActionButton: FloatingActionButton(
+          onPressed: openAddBottomSheet,
           backgroundColor: Colors.lime,
-          child: Icon(
+          child: const Icon(
             Icons.add,
           ),
         ),
