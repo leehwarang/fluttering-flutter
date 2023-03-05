@@ -22,21 +22,42 @@ class MainNavigator extends StatelessWidget {
 
     int currentIndex = _bottomNavigationBarProvider.selectedTabIndex;
 
-    // leafType에 따라서 다른 모달창 열기
     void openAddBottomSheet() {
+      final String title = _bottomNavigationBarProvider.leafType == "today"
+          ? "오늘의 잎 더하기"
+          : "내일의 잎 더하기";
+
       showModalBottomSheet<void>(
-          context: context,
-          builder: (BuildContext context) {
-            return Container(
-              height: 200,
-              color: Colors.white,
-              child: Center(
-                child: Column(children: const [
-                  Text("Modal BotttomSheet"),
-                ]),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(16.0),
+          ),
+        ),
+        context: context,
+        builder: (BuildContext context) {
+          return SizedBox(
+            height: 400,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 16,
+                horizontal: 16,
               ),
-            );
-          });
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      );
     }
 
     return Scaffold(
