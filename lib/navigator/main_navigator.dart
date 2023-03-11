@@ -24,7 +24,7 @@ class MainNavigator extends StatelessWidget {
 
     int currentIndex = _bottomNavigationBarProvider.selectedTabIndex;
 
-    void openAddBottomSheet() {
+    void opeNewLeafBottomSheet() {
       final String title =
           _bottomNavigationBarProvider.leafType == "today" ? "오늘의 잎" : "내일의 잎";
 
@@ -37,6 +37,64 @@ class MainNavigator extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return NewLeafBottomSheet(title: title);
+        },
+      );
+    }
+
+    void openAddBottomSheet() {
+      final String secondRowTitle =
+          _bottomNavigationBarProvider.leafType == "today"
+              ? "오늘의 잎 더하기"
+              : "내일의 잎 더하기";
+
+      showModalBottomSheet<void>(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(16.0),
+          ),
+        ),
+        context: context,
+        useSafeArea: true,
+        constraints: const BoxConstraints(
+          maxWidth: 360,
+        ),
+        builder: (BuildContext context) {
+          return SizedBox(
+            height: 150,
+            child: Container(
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ListTile(
+                      onTap: () =>
+                          {Navigator.pop(context), opeNewLeafBottomSheet()},
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(16),
+                          topRight: Radius.circular(16),
+                        ),
+                      ),
+                      title: const Text("새로운 씨앗 심기"),
+                      tileColor: Colors.brown.shade400,
+                    ),
+                  ),
+                  Expanded(
+                    child: ListTile(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(16),
+                          bottomRight: Radius.circular(16),
+                        ),
+                      ),
+                      title: Text(secondRowTitle),
+                      subtitle: const Text("aaaa"),
+                      tileColor: Colors.green.shade300,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
         },
       );
     }

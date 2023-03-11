@@ -57,13 +57,13 @@ class _NewLeafBottomSheetState extends State<NewLeafBottomSheet> {
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     width: 1.5,
-                    color: Colors.green.shade300,
+                    color: Colors.brown.shade400,
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     width: 1.5,
-                    color: Colors.green.shade300,
+                    color: Colors.brown.shade400,
                   ),
                 ),
                 hintText: '필라테스하기 같은게 될 수 있겠죠?',
@@ -86,7 +86,7 @@ class _NewLeafBottomSheetState extends State<NewLeafBottomSheet> {
               //  minimumSize: const Size.fromHeight(50), // NEW
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),
-                backgroundColor: Colors.green.shade300,
+                backgroundColor: Colors.brown.shade400,
                 textStyle: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
