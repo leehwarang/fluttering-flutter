@@ -32,8 +32,8 @@ class HomeScreen extends StatelessWidget {
         centerTitle: false,
         title: Text(
           appBartitle,
-          style: const TextStyle(
-            color: Colors.lime,
+          style: TextStyle(
+            color: Colors.green.shade300,
           ),
         ),
         actions: [
@@ -41,9 +41,9 @@ class HomeScreen extends StatelessWidget {
             onPressed: () => {},
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
-            icon: const Icon(
+            icon: Icon(
               Icons.space_dashboard_sharp,
-              color: Colors.lime,
+              color: Colors.green.shade300,
             ),
           )
         ],

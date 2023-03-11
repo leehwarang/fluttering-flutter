@@ -55,7 +55,7 @@ class MainNavigator extends StatelessWidget {
             currentIndex: currentIndex,
             onTap: (idx) =>
                 _bottomNavigationBarProvider.changeSelectedTabIndex(idx),
-            selectedItemColor: Colors.lime,
+            selectedItemColor: Colors.green.shade300,
             unselectedItemColor: Colors.brown.shade400,
             enableFeedback: true,
             items: [
@@ -99,7 +99,7 @@ class MainNavigator extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: openAddBottomSheet,
-          backgroundColor: Colors.lime,
+          backgroundColor: Colors.green.shade300,
           child: const Icon(
             Icons.add,
           ),
