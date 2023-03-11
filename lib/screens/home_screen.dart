@@ -36,17 +36,18 @@ class HomeScreen extends StatelessWidget {
             color: Colors.green.shade300,
           ),
         ),
-        actions: [
-          IconButton(
-            onPressed: () => {},
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            icon: Icon(
-              Icons.space_dashboard_sharp,
-              color: Colors.green.shade300,
-            ),
-          )
-        ],
+        // NOTE: MVP 아니여서 잠시 숨김
+        // actions: [
+        //   IconButton(
+        //     onPressed: () => {},
+        //     splashColor: Colors.transparent,
+        //     highlightColor: Colors.transparent,
+        //     icon: Icon(
+        //       Icons.space_dashboard_sharp,
+        //       color: Colors.green.shade300,
+        //     ),
+        //   )
+        // ],
       ),
       body: SafeArea(
         child: Padding(
